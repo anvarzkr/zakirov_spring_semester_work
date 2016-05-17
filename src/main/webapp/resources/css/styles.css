@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #F6D3A9 url('../img/bg_pattern.jpg') repeat;
+    font-family: "Roboto", sans-serif;
+}
+
+html {
+    font-size: 14px;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.red {
+    color: #dd4814;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.content-wrap {
+    padding: 30px !important;
+    margin-top: 50px;
+    background-color: #fff;
+}
+
+.navbar-nav li {
+     border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+.navbar-nav li:last-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+.navbar a {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.navbar a.navbar-brand {
+    text-transform: none;
+    font-weight: 500;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+.navbar-default .navbar-collapse {
+    border-top: none;
+}
+
+.jumbotron {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.container .jumbotron {
+    border-radius: 0;
+    text-shadow: 1px 1px 1px #000;
+    color: #fff;
+}
+
+.hero-pizza {
+    background: #F6D3A9 url('../img/pizza_header.jpg') no-repeat;
+    background-size: cover;
+}
+
+.input-has-error {
+    color: #ff0000;
+}
+
+footer {
+    margin-top: 5px;
+    padding: 30px !important;
+    background-color: #fff;
+}
+footer h4 {
+    margin-top: 0;
+}
