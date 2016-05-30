@@ -20,9 +20,9 @@ public class AddProductForm {
 
     private AsyncCallback<List<Category>> callback;
 
-    public FormPanel getAddProductForm() {
+    static final ListBox list = new ListBox();
 
-        final ListBox list = new ListBox();
+    public FormPanel getAddProductForm() {
 
         callback = new AsyncCallback<List<Category>>() {
 
@@ -33,28 +33,26 @@ public class AddProductForm {
 
             @Override
             public void onSuccess(List<Category> categories) {
-//                for (int i = 0; i < list.getItemCount(); i++) {
-//                    list.removeItem(i);
-//                }
                 for (Category category : categories) {
                     list.addItem(category.getName(), String.valueOf(category.getId()));
                 }
             }
         };
 
-//        goodServiceAsyncService.getAllCategories(callback);
+        goodServiceAsyncService.getAllCategories(callback);
         VerticalPanel panel = new VerticalPanel();
         final FormPanel form = new FormPanel();
-        form.setAction("/admin/add_item");
+        form.setAction("/admin/add_product");
 //        form.setEncoding(FormPanel.ENCODING_MULTIPART);
         form.setMethod(FormPanel.METHOD_POST);
+
+        System.out.println(GWT.getModuleBaseURL());
 
         final Label status = new Label("");
         panel.add(status);
 
-        Label itemNameLabel = new Label("Item name:");
-        final TextBox nameForm;
-        nameForm = new TextBox();
+        Label itemNameLabel = new Label("Product name:");
+        final TextBox nameForm = new TextBox();
         nameForm.getElement().setAttribute("type", "text");
         nameForm.setName("name");
         panel.add(itemNameLabel);
@@ -77,17 +75,32 @@ public class AddProductForm {
 
         Label categoryProductLabel = new Label("Category name:");
         list.setVisibleItemCount(0);
-        list.setName("category");
+        list.setName("category_id");
         panel.add(categoryProductLabel);
         panel.add(list);
 
-        Label countItemLabel = new Label("Count:");
-        final TextBox countItemForm = new TextBox();
-        countItemForm.setName("count");
-        countItemForm.getElement().setAttribute("type", "number");
-        countItemForm.getElement().setAttribute("min", "1");
-        panel.add(countItemLabel);
-        panel.add(countItemForm);
+        Label weightProductLabel = new Label("Weight:");
+        final TextBox weightProductForm = new TextBox();
+        weightProductForm.setName("weight");
+        weightProductForm.getElement().setAttribute("type", "number");
+        weightProductForm.getElement().setAttribute("min", "0");
+        panel.add(weightProductLabel);
+        panel.add(weightProductForm);
+
+        Label diameterSizeProductLabel = new Label("Diameter Size:");
+        final TextBox diameterSizeProductForm = new TextBox();
+        diameterSizeProductForm.setName("diameter_size");
+        diameterSizeProductForm.getElement().setAttribute("type", "number");
+        diameterSizeProductForm.getElement().setAttribute("min", "0");
+        panel.add(diameterSizeProductLabel);
+        panel.add(diameterSizeProductForm);
+
+        Label fileUploadLabel = new Label("Выберете картинку:");
+        final FileUpload fileUpload = new FileUpload();
+        fileUpload.setName("img");
+        fileUpload.getElement().setAttribute("accept",".png, .jpg, .jpeg");
+        panel.add(fileUploadLabel);
+        panel.add(fileUpload);
 
         Button uploadButton = new Button("Add");
         panel.add(uploadButton);
@@ -95,9 +108,12 @@ public class AddProductForm {
         uploadButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                String itemName = nameForm.getValue();
-                if (itemName.length() == 0) {
-                    status.setText("Заполните все поля!");
+                if (nameForm.getValue().length() == 0
+                        || descriptionForm.getValue().length() == 0
+                        || priceProductForm.getValue().length() == 0
+                        || weightProductForm.getValue().length() == 0
+                        || diameterSizeProductForm.getValue().length() == 0) {
+                    status.setText("Please, fill out all fields!");
                     status.getElement().setClassName("error");
                 } else {
                     form.submit();
@@ -110,7 +126,6 @@ public class AddProductForm {
             public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
                 status.setText("Success, item was added!");
                 status.getElement().setClassName("success");
-                countItemForm.setValue("");
                 descriptionForm.setValue("");
                 nameForm.setValue("");
             }

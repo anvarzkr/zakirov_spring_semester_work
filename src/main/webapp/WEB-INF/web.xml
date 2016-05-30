@@ -60,14 +60,14 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--<servlet>-->
-        <!--<servlet-name>springGwtRemoteServiceServlet</servlet-name>-->
-        <!--<servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet</servlet-class>-->
-    <!--</servlet>-->
+    <servlet>
+        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+        <servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet</servlet-class>
+    </servlet>
 
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>springGwtRemoteServiceServlet</servlet-name>-->
-        <!--<url-pattern>/resources.hellogwt/springGwtServices/*</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+        <url-pattern>/resources.hellogwt/springGwtServices/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

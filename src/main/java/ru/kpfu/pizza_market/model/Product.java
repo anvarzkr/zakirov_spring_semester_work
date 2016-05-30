@@ -18,7 +18,7 @@ public class Product {
 
     private String description;
 
-    private Integer price;
+    private Integer price = 0;
 
     private String img;
 
@@ -26,13 +26,13 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    private Date createdAt;
+    private Date createdAt = new Date();
 
-    private Integer salesCount;
+    private Integer salesCount = 0;
 
-    private Integer weight;
+    private Integer weight = 0;
 
-    private Integer diameterSize;
+    private Integer diameterSize = 0;
 
     public Product(){}
 

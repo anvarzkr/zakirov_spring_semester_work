@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Service("gwtService")
-public class GwtServiceImpl implements GwtService{
+public class GwtServiceImpl implements GwtService {
 
     @Autowired
     CategoryRepository categoryRepository;
